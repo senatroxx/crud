@@ -2,7 +2,7 @@
 
 @section('content')
 <a href="{{ route('quiz.create') }}" class="btn btn-primary float-right d-inline-block">Add Quiz</a>
-<a href="" class="btn btn-primary float-right d-inline-block mr-2">Add Text</a>
+<a href="{{ route('text.create') }}" class="btn btn-primary float-right d-inline-block mr-2">Add Text</a>
 
 <ul class="nav nav-pills mb-2">
 	<li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#quiz">Quiz</a></li>
@@ -45,7 +45,7 @@
 							<form action="{{ route('quiz.destroy', $q->id) }}" method="post" class="d-inline-block">
 							@csrf
 							@method('DELETE')
-								<button href="" class="btn btn-danger btn-sm" >Delete</button>
+								<button class="btn btn-danger btn-sm" >Delete</button>
 							</form>
 						</td>
 					</tr>
@@ -57,8 +57,32 @@
 
 	<div id="text" class="tab-pane fade" role="tabpanel">
 		<div class="table-responsive">
-			<table>
-				
+			<table class="table">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Content</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+				@php $x = 1; @endphp
+				@foreach($text as $t)
+					<tr>
+						<td>{{ $x++ }}</td>
+						<td>{!! \Illuminate\Support\Str::limit(strip_tags($t->content), $limit = 120, $end = '...') !!}</td>
+						<td>
+							<a href="{{ route('text.show', $t->id) }}" class="btn btn-success btn-sm">Show</a>
+							<a href="{{ route('text.edit', $t->id) }}" class="btn btn-warning btn-sm">Edit</a>
+							<form action="{{ route('text.destroy', $t->id) }}" method="post" class="d-inline-block">
+							@csrf
+							@method('DELETE')
+								<button class="btn btn-danger btn-sm" >Delete</button>
+							</form>
+						</td>
+					</tr>
+				@endforeach
+				</tbody>
 			</table>
 		</div>
 	</div>

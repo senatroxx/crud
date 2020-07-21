@@ -5,6 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>CRUD</title>
 	<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+	<style>
+	.ck-editor__editable{
+		min-height: 400px;
+	}
+	</style>
 </head>
 <body>
 	<div class="container">
@@ -19,8 +24,63 @@
 
 	<script src="{{ asset('js/jquery.min.js') }}"></script>
 	<script src="{{ asset('js/app.js') }}"></script>
+	<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 	<script>
-
+		ClassicEditor
+			.create( document.querySelector( '.editor' ), {
+				toolbar: {
+					items: [
+						'heading',
+						'|',
+						'bold',
+						'italic',
+						'underline',
+						'link',
+						'bulletedList',
+						'numberedList',
+						'alignment',
+						'|',
+						'indent',
+						'outdent',
+						'|',
+						'imageUpload',
+						'blockQuote',
+						'insertTable',
+						'mediaEmbed',
+						'undo',
+						'redo',
+						'fontColor',
+						'fontBackgroundColor'
+					]
+				},
+				language: 'en',
+				image: {
+					toolbar: [
+						'imageTextAlternative',
+						'imageStyle:full',
+						'imageStyle:side'
+					]
+				},
+				table: {
+					contentToolbar: [
+						'tableColumn',
+						'tableRow',
+						'mergeTableCells'
+					]
+				},
+				licenseKey: '',
+				
+			} )
+			.then( editor => {
+				window.editor = editor;
+			} )
+			.catch( error => {
+				console.error( 'Oops, something gone wrong!' );
+				console.error( 'Please, report the following error in the https://github.com/ckeditor/ckeditor5 with the build id and the error stack trace:' );
+				console.warn( 'Build id: axcts2l0qtiy-391um74d4qwh' );
+				console.error( error );
+			} );
+	
 	function decreaseIndex() {
 		let index = $("#questionTotal").text().split(" ").pop();
 		let cek = $("#questionTotal").text('Total Question: ' + (parseInt(index)-1));

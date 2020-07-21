@@ -23,3 +23,12 @@ Route::prefix('quiz')->group(function () {
   Route::put('update/{id}', 'QuizController@update')->name('quiz.update');
   Route::delete('delete/{id}', 'QuizController@destroy')->name('quiz.destroy');
 });
+
+Route::prefix('text')->group(function (){
+  Route::get('create', 'TextController@create')->name('text.create');
+  Route::post('store', 'TextController@store')->name('text.store');
+  Route::get('show/{id}', 'TextController@show')->name('text.show');
+  Route::get('edit/{id}', 'TextController@edit')->name('text.edit');
+  Route::put('update/{id}', 'TextController@update')->name('text.update');
+  Route::delete('delete/{id}', 'TextController@destroy')->name('text.destroy');
+});
