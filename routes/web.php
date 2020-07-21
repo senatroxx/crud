@@ -32,3 +32,5 @@ Route::prefix('text')->group(function (){
   Route::put('update/{id}', 'TextController@update')->name('text.update');
   Route::delete('delete/{id}', 'TextController@destroy')->name('text.destroy');
 });
+
+Route::post('score/{id}', 'ScoreController@addScore')->name('addScore');
