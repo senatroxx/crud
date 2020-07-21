@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <a href="{{ route('quiz.create') }}" class="btn btn-primary float-right d-inline-block">Add Quiz</a>
 <a href="{{ route('text.create') }}" class="btn btn-primary float-right d-inline-block mr-2">Add Text</a>
 

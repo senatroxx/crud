@@ -12,6 +12,10 @@ class ScoreController extends Controller
     public function addScore(Request $request, $id)
     {
         $inputName = "answer-".$id;
+        
+        $valid = $this->validate($request, [
+            $inputName => 'required'
+        ]);
 
         $quiz = Quiz::find($id);
 
